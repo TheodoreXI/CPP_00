@@ -1,6 +1,31 @@
 #include "phonebook.hpp"
 
 
+int parsing(int i, int *index)
+{
+    std::string s;
+
+    getline(std::cin >> std::ws , s);
+    if (s.length() > 1)
+    {
+        std::cout << "The index can only be from 0 to " << (i-1) << "\n";
+        return (1);
+    }
+    if (!isdigit(s[0]))
+    {
+        std::cout << "Only numbers are accepted.\n";
+        return (1);
+    }
+    std::cout << "Give me an index of a contact: (0 to " << (i-1) << "): ";
+    *index = s[0] - 48;
+    if (*index >= i || *index >= 8)
+    {
+        std::cout << "The index can only be from 0 to " << (i-1) << "\n";
+        return (1);
+    }
+    return (0);
+}
+
 int main()
 {
     std::string input;
@@ -10,12 +35,15 @@ int main()
     int j = 0;
     int check = 0;
     int index = 0;
+    int limiter = 0;
     while (1)
     {
         std::cout << "Enter one of the three commands: (ADD, SEARCH, EXIT): ";
         getline(std::cin, input);
         if (input == "ADD")
         {
+            if (i == 8)
+                i = 0;
             while (1)
             {
                 std::cout << "Enter your first name: ";
@@ -127,16 +155,14 @@ int main()
                 var += '.';
             }
             phone.contact[i].set_secret(var);
+            if (limiter < 8)
+                limiter += 1;
             i++;
-            if (i == 8)
-                i = 0;
         }
         else if (input == "SEARCH")
         {
-            if (i == 0)
-            {
+            if (!limiter)
                 std::cout << "Enter a contact first: (ADD)\n";
-            }
             else
             {
                 j = 0;
@@ -144,19 +170,16 @@ int main()
                 << std::setw(10) << "FirstName" << "|"
                 << std::setw(10) << "LastName" << "|"
                 << std::setw(10) << "NickName\n";
-                while (j < i)
+                while (j < limiter)
                 {
                     std::cout << std::setw(10) << j << "|"
                     << std::setw(10) << phone.contact[j].get_first() << "|"
                     << std::setw(10) << phone.contact[j].get_last() << "|"
                     << std::setw(10) << phone.contact[j].get_nick() << "\n";
-                    j++; 
+                    j++;
                 }
-                std::cout << "Give me an index of a contact: (0 to " << (i-1) << "): ";
-                std::cin >> index; //check if index got a string or a char i have a problem with two prompts
-                if (index >= i || index >= 8)
-                    std::cout << "The index can only be from 0 to " << (i-1) << "\n";
-                else 
+                std::cout << "Give me an index of a contact: (0 to " << (limiter-1) << "): ";//this prints twice
+                if (!parsing(limiter, &index))
                 {
                     std::cout << std::setw(10) << "Index" << "|"
                     << std::setw(10) << "FirstName" << "|"
