@@ -1,16 +1,16 @@
-SRC= phonebook.cpp
+SRC= PhoneBook.cpp Contact.cpp
 OBJ= $(SRC:.cpp=.o)
-NAME= phonebook
+NAME= PhoneBook
 CC= c++
 FLAGS= -Wall -Wextra -Werror
 
 all: $(NAME)
 
-%.o: %.cpp phonebook.hpp
+%.o: %.cpp PhoneBook.hpp Contact.hpp 
 	$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $< -o $@
+	$(CC) $(FLAGS) $^ -o $@
 
 clean:
 	rm -rf $(OBJ)

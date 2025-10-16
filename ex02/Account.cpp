@@ -1,11 +1,5 @@
 #include "Account.hpp"
 
-
-// void Account::displayAccountsInfos( void )
-// {
-//     std::cout << "index:" << 
-// }
-
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
@@ -87,5 +81,3 @@ Account::~Account( void )
 {
     std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";closed\n";
 }
-
-// void    displayStatus(void)
