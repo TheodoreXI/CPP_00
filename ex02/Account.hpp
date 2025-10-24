@@ -30,21 +30,13 @@ public:
 	static int	getNbDeposits( void );
 	static int	getNbWithdrawals( void );
 	static void	displayAccountsInfos( void );
-	//accounts:8;total:20049;deposits:0;withdrawals:0
 
 	Account( int initial_deposit );
-	//[19920104_091532] index:0;amount:42;created
 	~Account( void );
-// [19920104_091532] index:1;amount:785;closed
-
 	void	makeDeposit( int deposit );
-	//index:0;p_amount:42;deposit:5;amount:47;nb_deposits:1
 	bool	makeWithdrawal( int withdrawal );
-	//index:5;p_amount:23;withdrawal:refused
 	int		checkAmount( void ) const;
-	//gett _amount
 	void	displayStatus( void ) const;
-	//index:0;amount:47;deposits:1;withdrawals:0
 
 
 private:

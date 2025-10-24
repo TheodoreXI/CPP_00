@@ -7,7 +7,7 @@ int parsing(int i, int *index)
     if (!getline(std::cin >> std::ws , s))
     {
         std::cout << std::endl;
-        return (1);
+        exit (1);
     }
     if (s.length() > 1)
     {
@@ -184,7 +184,7 @@ int main()
                     << std::setw(10) << phone.contact[j].get_nick() << "\n";
                     j++;
                 }
-                std::cout << "Give me an index of a contact: (0 to " << (limiter-1) << "): " ;//this prints twice
+                std::cout << "Give me an index of a contact: (0 to " << (limiter-1) << "): ";
                 if (!parsing(limiter, &index))
                     ft_print(phone, index);
             }
