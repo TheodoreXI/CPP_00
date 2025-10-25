@@ -18,7 +18,7 @@ int parsing(int i, int *index)
         std::cout << "The index can only be from 0 to " << (i-1) << "\n";
         return (1);
     }
-    if (!isdigit(s[0]))
+    if (!std::isdigit(s[0]))
     {
         std::cout << "Only numbers are accepted.\n";
         return (1);
@@ -39,7 +39,7 @@ int ft_check_string(std::string var, int check)
     {
         while (var[j])
         {
-            if (!isalpha(var[j]) && var[j] != ' ')
+            if (!std::isalpha(var[j]) && var[j] != ' ')
                 return (1);
             j++;
         }
@@ -48,7 +48,7 @@ int ft_check_string(std::string var, int check)
     {
         while (var[j])
         {
-            if (!isdigit(var[j]))
+            if (!std::isdigit(var[j]))
                 return (1);
             j++;
         }
@@ -65,7 +65,7 @@ std::string    ft_fill_var(std::string prompt, int check, int *error)
         while (1)
         {
             std::cout << prompt;
-            if (!getline(std::cin >> std::ws, var))
+            if (!std::getline(std::cin >> std::ws, var))
             {
                 std::cout << std::endl;
                 *error = 1;
@@ -82,7 +82,7 @@ std::string    ft_fill_var(std::string prompt, int check, int *error)
         while (1)
         {
             std::cout << "Enter your phone number: ";
-            if (!getline(std::cin >> std::ws, var))
+            if (!std::getline(std::cin >> std::ws, var))
             {
                 std::cout << std::endl;
                 *error = 1;
@@ -120,7 +120,7 @@ int main()
     while (1)
     {
         std::cout << "Enter one of the three commands: (ADD, SEARCH, EXIT): ";
-        if (!getline(std::cin, input))
+        if (!std::getline(std::cin, input))
         {
             std::cout << std::endl;
             break ;
