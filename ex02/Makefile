@@ -1,8 +1,8 @@
 SRC = Account.cpp tests.cpp
-FLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -Wextra -Werror
 OBJ = $(SRC:.cpp=.o)
 CC = c++
-NAME = account 
+NAME = Account 
 
 all: $(NAME)
 

@@ -16,7 +16,8 @@
 //                               Account Class                                //
 // ************************************************************************** //
 
-#include <iostream> //check if it should change
+#include <iostream>
+#include <ctime>
 
 class Account {
 
@@ -30,7 +31,6 @@ public:
 	static int	getNbDeposits( void );
 	static int	getNbWithdrawals( void );
 	static void	displayAccountsInfos( void );
-
 	Account( int initial_deposit );
 	~Account( void );
 	void	makeDeposit( int deposit );

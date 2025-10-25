@@ -3,12 +3,16 @@
 int parsing(int i, int *index)
 {
     std::string s;
+    int j = 0;
 
     if (!getline(std::cin >> std::ws , s))
     {
         std::cout << std::endl;
         exit (1);
     }
+    while (s[j+1] && s[j] == '0')
+        j++;
+    s = &s[j];
     if (s.length() > 1)
     {
         std::cout << "The index can only be from 0 to " << (i-1) << "\n";
@@ -72,11 +76,6 @@ std::string    ft_fill_var(std::string prompt, int check, int *error)
             else
                 break ;
         }
-        if (var.length() > 10)
-        {
-            var = var.substr(0, 9);
-            var += '.';
-        }
     }
     else if (check == 2)
     {
@@ -94,29 +93,18 @@ std::string    ft_fill_var(std::string prompt, int check, int *error)
             else
                 break ;
         }
-        if (var.length() > 10)
-        {
-            var = var.substr(0, 9);
-            var += '.';
-        }
     }
     return (var);
 }
 
 void    ft_print(PhoneBook &phone, int index)
 {
-    std::cout << std::setw(10) << "Index" << "|"
-    << std::setw(10) << "FirstName" << "|"
-    << std::setw(10) << "LastName" << "|"
-    << std::setw(10) << "NickName" << "|"
-    << std::setw(10) << "Number" << "|"
-    << std::setw(10) << "Secret\n";
-    std::cout << std::setw(10) << index << "|"
-    << std::setw(10) << phone.contact[index].get_first() << "|"
-    << std::setw(10) << phone.contact[index].get_last() << "|"
-    << std::setw(10) << phone.contact[index].get_nick() << "|"
-    << std::setw(10) << phone.contact[index].get_num() << "|"
-    << std::setw(10) << phone.contact[index].get_secret() << "\n";
+    std::cout << "Index: " << index << "\n";
+    std::cout << "FirstName: " << phone.contact[index].get_first() << "\n";
+    std::cout << "LastName: " << phone.contact[index].get_last() << "\n";
+    std::cout << "NickName: " << phone.contact[index].get_nick() << "\n";
+    std::cout << "Number: " << phone.contact[index].get_num() << "\n";
+    std::cout << "Secret: " << phone.contact[index].get_secret() << "\n";
 }
 
 int main()
@@ -175,13 +163,22 @@ int main()
                 std::cout << std::setw(10) << "Index" << "|"
                 << std::setw(10) << "FirstName" << "|"
                 << std::setw(10) << "LastName" << "|"
-                << std::setw(10) << "NickName\n";
+                << std::setw(10) << "NickName" << "|\n";
                 while (j < limiter)
                 {
-                    std::cout << std::setw(10) << j << "|"
-                    << std::setw(10) << phone.contact[j].get_first() << "|"
-                    << std::setw(10) << phone.contact[j].get_last() << "|"
-                    << std::setw(10) << phone.contact[j].get_nick() << "\n";
+                    std::cout << std::setw(10) << j << "|";
+                    if (phone.contact[j].get_first().length() > 10)
+                        std::cout << std::setw(10) << phone.contact[j].get_first().substr(0,9) + '.' << "|";
+                    else
+                        std::cout << std::setw(10) << phone.contact[j].get_first() << "|";
+                    if (phone.contact[j].get_last().length() > 10)
+                        std::cout << std::setw(10) << phone.contact[j].get_last().substr(0,9) + '.' << "|";
+                    else
+                        std::cout << std::setw(10) << phone.contact[j].get_last() << "|";
+                    if (phone.contact[j].get_nick().length() > 10)
+                        std::cout << std::setw(10) << phone.contact[j].get_nick().substr(0,9) + '.' << "|" << "\n";
+                    else
+                        std::cout << std::setw(10) << phone.contact[j].get_nick() << "|" << "\n";
                     j++;
                 }
                 std::cout << "Give me an index of a contact: (0 to " << (limiter-1) << "): ";

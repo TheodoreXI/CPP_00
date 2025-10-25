@@ -11,10 +11,10 @@ int main(int argc, char *argv[])
     {
         for (int i = 1; i < argc; i++)
             s.append(argv[i]);
-        for (int i = 0; i < (int)s.length(); i++)
+        for (size_t i = 0; i < s.length(); i++)
         {
-            if (islower(s[i]))
-                s[i] = toupper(s[i]);
+            if (std::islower(s[i]))
+                s[i] = std::toupper(s[i]);
         }
         std::cout << s;
     }

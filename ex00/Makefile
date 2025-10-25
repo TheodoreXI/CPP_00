@@ -1,8 +1,8 @@
-SRC= megaphone.cpp
+SRC= MegaPhone.cpp
 OBJ= $(SRC:.cpp=.o)
 CC= c++
 FLAGS= -Wall -Wextra -Werror -std=c++98
-NAME= megaphone
+NAME= Megaphone
 
 all: $(NAME)
 
